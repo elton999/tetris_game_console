@@ -3,7 +3,7 @@ using tetris.interfaces;
 
 namespace tetris
 {
-    public abstract class Piece : IObjectForm, IPrint, ILocations, IStartObject, IUpdateObject
+    public abstract class Piece : Cell, IObjectForm, IPrint, ILocations, IStartObject, IUpdateObject
     {
         private int _x = 0;
         private int _y = 0;
@@ -18,7 +18,23 @@ namespace tetris
 
         public void Update()
         {
-            PieceMovement.Move(X, Y + 1);
+            SetMovementSettings();
+
+            int yIncrement = 1;
+            int xIncrement = 0;
+
+            if (InputHandler.Instance.MoveRight)
+                xIncrement = 1;
+            if (InputHandler.Instance.MoveLeft)
+                xIncrement = -1;
+
+            PieceMovement.Move(X + xIncrement, Y + yIncrement);
+        }
+
+        public void SetMovementSettings()
+        {
+            PieceMovement.Form = this;
+            PieceMovement.Location = this;
         }
 
         public void Print()
@@ -29,20 +45,7 @@ namespace tetris
                 {
                     int xLocation = X + column;
                     int yLocation = Y + line;
-                    PrintBlock(xLocation, yLocation);
-                }
-            }
-        }
-
-        private void PrintBlock(int xLocation, int yLocation)
-        {
-            char[,] cells = PieceMovement.Grid.Cells;
-            if (xLocation < PieceMovement.Grid.X && yLocation < PieceMovement.Grid.Y)
-            {
-                if(cells[xLocation, yLocation] == '-')
-                {
-                    Console.SetCursorPosition(xLocation, yLocation);
-                    Console.Write(FormObject[yLocation - Y, xLocation - X]);
+                    PrintCell(FormObject[line, column], xLocation, yLocation, PieceMovement.Grid);
                 }
             }
         }

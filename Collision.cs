@@ -14,7 +14,7 @@ namespace tetris
                     bool verticalCheck = x + column < 0 || x + column > grid.X;
                     bool horizontalCheck = y + line > grid.Y - 1;
 
-                    if (IsBlockFree(piece, column, line) && (verticalCheck || horizontalCheck))
+                    if (!IsBlockFree(piece, column, line) && (verticalCheck || horizontalCheck))
                     {
                         return true;
                     }

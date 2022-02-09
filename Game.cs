@@ -28,9 +28,10 @@ namespace tetris
 
         public void Update()
         {
-            PieceMovement.Form = CurrentPiece;
-            PieceMovement.Location = CurrentPiece;
-            
+            CurrentPiece.PieceMovement = PieceMovement;
+
+            InputHandler.Instance.Update();
+
             CurrentPiece.Update();
         }
 

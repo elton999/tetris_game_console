@@ -11,6 +11,11 @@ namespace tetris.interfaces
         void Print();
     }
 
+    public interface IPrintCell
+    {
+        void PrintCell(char characther, int xLocation, int yLocation, Grid grid);
+    }
+
     public interface IObjectForm
     {
         char[,] FormObject {get; set;}
