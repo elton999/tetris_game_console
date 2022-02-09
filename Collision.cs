@@ -14,7 +14,7 @@ namespace tetris
                     bool verticalCheck = x + column < 0 || x + column > grid.X;
                     bool horizontalCheck = y + line > grid.Y - 1;
 
-                    if(piece.FormObject[column, line] != '-' && (verticalCheck || horizontalCheck))
+                    if (IsBlockFree(piece, column, line) && (verticalCheck || horizontalCheck))
                     {
                         return true;
                     }
@@ -22,6 +22,11 @@ namespace tetris
             }
 
             return false;
+        }
+
+        public static bool IsBlockFree(IObjectForm piece, int column, int line)
+        {
+            return piece.FormObject[column, line] == '-';
         }
     }
 }
