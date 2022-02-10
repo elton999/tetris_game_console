@@ -18,6 +18,12 @@ namespace tetris
             EffectBlink.Enqueue('+');
         }
 
+        public void Update()
+        {
+            if(_Blinks > 0) return;
+            Grid.ClearCompletedLines();
+        }
+
         public void Print()
         {
             if(Grid.LinesComplete.Count == 0) return;

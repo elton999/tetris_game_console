@@ -34,6 +34,7 @@ namespace tetris
             
             PieceManager.CurrentPiece.PieceMovement = PieceMovement;
             PieceManager.Update();
+            GridEfx.Update();
         }
 
         public void Print()

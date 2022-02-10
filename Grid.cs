@@ -11,6 +11,9 @@ namespace tetris
 
         public int SizeX {get => _sizeX; set => _sizeX = value;}
         public int SizeY {get => _sizeY; set => _sizeY = value;}
+        public int X = 0;
+        public int Y = 0;
+
         public char[,] Cells;
         public List<int> LinesComplete = new List<int>();
 
@@ -42,8 +45,37 @@ namespace tetris
                 }
                 if(numberOfCells == SizeX) lines.Add(line);
             }
-
             LinesComplete = lines;
+        }
+
+        public void ClearCompletedLines()
+        {
+            foreach (int lineComplete in LinesComplete)
+            {
+                ClearLine(lineComplete);
+                PushCellsFromLine(lineComplete);
+            }
+            LinesComplete = new List<int>();
+        }
+
+        public void ClearLine(int line)
+        {
+            for(int column = 0; column < SizeX; column++)
+            {
+                Cells[column, line] = '-';
+            }
+        }
+
+        public void PushCellsFromLine(int fromLine)
+        {
+            for(int line = fromLine; line >= 0; line--)
+            {
+                for(int column = 0; column < SizeX; column++ )
+                {
+                    if(line == 0) Cells[column, line] = '-';
+                    else Cells[column, line] = Cells[column, line - 1];
+                }
+            }
         }
 
         public void SetPieceOnGrid(Piece piece)
@@ -66,7 +98,7 @@ namespace tetris
             {
                 for(int column = 0; column < SizeX; column++)
                 {
-                    Console.SetCursorPosition(column, line);
+                    Console.SetCursorPosition(column + X, line + Y);
                     Console.Write(Cells[column, line]);
                 }
             }
