@@ -24,24 +24,18 @@ namespace tetris
 
         public static bool IsCollidingOnBorders(char[,] cells, Grid grid, int column, int line, int x, int y)
         {
-            bool verticalCheck = x + column < 0 || x + column > grid.X - 1;
-            bool horizontalCheck = y + line > grid.Y - 1;
+            bool verticalCheck = x + column < 0 || x + column > grid.SizeX - 1;
+            bool horizontalCheck = y + line > grid.SizeY - 1;
 
-            if ((verticalCheck || horizontalCheck) && !IsCellFree(cells, column, line))
-                return true;
-                
-            return false;
+            return (verticalCheck || horizontalCheck) && !IsCellFree(cells, column, line);
         }
 
         public static bool IsCollidingOnOtherPiece(char[,] cells, Grid grid, int column, int line, int x, int y)
         {
-            int line1 = Math.Clamp(column + y, 0, grid.Y - 1);
-            int column1 = Math.Clamp(line + x, 0, grid.X - 1);
+            int line1 = Math.Clamp(column + y, 0, grid.SizeY - 1);
+            int column1 = Math.Clamp(line + x, 0, grid.SizeX - 1);
 
-            if (!IsCellFree(grid.Cells, column1, line1) && !IsCellFree(cells, column, line))
-                return true;
-        
-            return false;
+            return !IsCellFree(grid.Cells, column1, line1) && !IsCellFree(cells, column, line);
         }
 
         public static bool IsCellFree(char[,] cells, int column, int line)

@@ -1,29 +1,49 @@
+using System.Collections.Generic;
 using System;
 using tetris.interfaces;
 
 namespace tetris
 {
-    public class Grid : IPrint, ILocations
+    public class Grid : IPrint
     {
-        private int _x = 0;
-        private int _y = 0;
-        public int X {get => _x; set => _x = value;}
-        public int Y {get => _y; set => _y = value;}
+        private int _sizeX = 0;
+        private int _sizeY = 0;
+
+        public int SizeX {get => _sizeX; set => _sizeX = value;}
+        public int SizeY {get => _sizeY; set => _sizeY = value;}
         public char[,] Cells;
+        public List<int> LinesComplete = new List<int>();
 
         public Grid(int x, int y)
         {
-            this.X = x;
-            this.Y = y;
+            this.SizeX = x;
+            this.SizeY = y;
 
-            Cells = new char[X, Y];
-            for(int column = 0; column < X; column++)
+            Cells = new char[SizeX, SizeY];
+            for(int column = 0; column < SizeX; column++)
             {
-                for(int line = 0; line < Y; line++)
+                for(int line = 0; line < SizeY; line++)
                 {
                     Cells[column,line] = '-';
                 }
             }
+        }
+
+        public void CheckLinesComplete()
+        {
+            List<int> lines = new List<int>();
+
+            for(int line = 0; line < SizeY; line++)
+            {
+                int numberOfCells = 0;
+                for(int column = 0; column < SizeX; column++)
+                {
+                    if(!Collision.IsCellFree(Cells, column, line)) numberOfCells++;
+                }
+                if(numberOfCells == SizeX) lines.Add(line);
+            }
+
+            LinesComplete = lines;
         }
 
         public void SetPieceOnGrid(Piece piece)
@@ -40,15 +60,11 @@ namespace tetris
             }
         }
 
-        public void ClearLastGridLine(int yPiecePosition)
-        {
-        }
-
         public void Print()
         {
-            for(int line = 0; line < Y; line++)
+            for(int line = 0; line < SizeY; line++)
             {
-                for(int column = 0; column < X; column++)
+                for(int column = 0; column < SizeX; column++)
                 {
                     Console.SetCursorPosition(column, line);
                     Console.Write(Cells[column, line]);

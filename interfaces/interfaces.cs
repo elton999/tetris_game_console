@@ -6,6 +6,12 @@ namespace tetris.interfaces
         int Y {get; set;}
     }
 
+    public interface ISize
+    {
+        int SizeX {get; set;}
+        int SizeY {get; set;}
+    }
+
     public interface IPrint
     {
         void Print();

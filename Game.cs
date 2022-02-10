@@ -11,11 +11,13 @@ namespace tetris
         public Grid Grid;
         public PieceManager PieceManager;
         public PieceMovement PieceMovement;
+        public GridEfx GridEfx;
 
         public void Start()
         {
             Grid = new Grid(10, 20);
             Grid.Print();
+            GridEfx = new GridEfx(Grid);
 
             PieceMovement = new PieceMovement();
             PieceMovement.Grid = Grid;
@@ -26,6 +28,8 @@ namespace tetris
 
         public void Update()
         {
+            Grid.CheckLinesComplete();
+
             InputHandler.Instance.Update();
             
             PieceManager.CurrentPiece.PieceMovement = PieceMovement;
@@ -35,6 +39,7 @@ namespace tetris
         public void Print()
         {
             Grid.Print();
+            GridEfx.Print();
             PieceManager.Print();
         }
     }

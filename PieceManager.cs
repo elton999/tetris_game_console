@@ -15,6 +15,8 @@ namespace tetris
 
         public void Update()
         {
+            if(Grid.LinesComplete.Count > 0) return;
+
             CurrentPiece.Update();
 
             if(Collision.IsColliding(CurrentPiece, Grid, CurrentPiece.X, CurrentPiece.Y + 1))
