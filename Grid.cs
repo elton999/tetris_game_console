@@ -48,13 +48,13 @@ namespace tetris
 
         public void SetPieceOnGrid(Piece piece)
         {
-            for(int column = 0; column < 6; column++)
+            for(int line = 0; line < 6; line++)
             {
-                for(int line = 0; line < 6; line++)
+                for(int column = 0; column < 6; column++)
                 {
-                    if(Cells[column, line] == '-' &&  piece.FormObject[column, line] != '-')
+                    if(Cells[Math.Clamp(column + piece.X, 0, SizeX - 1), Math.Clamp(line + piece.Y, 0, SizeY - 1)] == '-' &&  piece.FormObject[line, column] != '-')
                     {
-                        Cells[column + piece.X, line + piece.Y] = piece.FormObject[column, line];
+                        Cells[Math.Clamp(column + piece.X, 0, SizeX - 1), Math.Clamp(line + piece.Y, 0, SizeY - 1)] = piece.FormObject[line, column];
                     }
                 }
             }

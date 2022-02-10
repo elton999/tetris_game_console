@@ -7,9 +7,9 @@ namespace tetris
     {
         public static bool IsColliding(IObjectForm piece, Grid grid, int x, int y)
         {
-            for(int column = 0; column < 6; column++)
+            for(int line = 0; line < 6; line++)
             {
-                for(int line = 0; line < 6; line++)
+                for(int column = 0; column < 6; column++)
                 {
                     if(IsCollidingOnBorders(piece.FormObject, grid, column, line, x, y))
                         return true;
@@ -27,7 +27,7 @@ namespace tetris
             bool verticalCheck = x + column < 0 || x + column > grid.SizeX - 1;
             bool horizontalCheck = y + line > grid.SizeY - 1;
 
-            return (verticalCheck || horizontalCheck) && !IsCellFree(cells, column, line);
+            return (verticalCheck || horizontalCheck) && !IsCellFree(cells, line,column);
         }
 
         public static bool IsCollidingOnOtherPiece(char[,] cells, Grid grid, int column, int line, int x, int y)

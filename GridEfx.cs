@@ -7,6 +7,7 @@ namespace tetris
 {
     public class GridEfx
     {
+        private int _Blinks = 8;
         public Grid Grid;
         public Queue<char> EffectBlink = new Queue<char>();
         
@@ -20,6 +21,10 @@ namespace tetris
         public void Print()
         {
             if(Grid.LinesComplete.Count == 0) return;
+            if(_Blinks <= 0) return;
+
+            _Blinks--;
+
             char effectBlink = EffectBlink.Dequeue();
             
             foreach(int line in Grid.LinesComplete)
