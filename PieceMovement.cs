@@ -11,7 +11,7 @@ namespace tetris
 
         public void Move(int x, int y)
         {
-            if(!Collision.IsOutOfGrid(Form, Grid, x, y))
+            if(!Collision.IsColliding(Form, Grid, x, y))
             {
                 Location.X = x;
                 Location.Y = y;

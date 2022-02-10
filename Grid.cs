@@ -26,6 +26,20 @@ namespace tetris
             }
         }
 
+        public void SetPieceOnGrid(Piece piece)
+        {
+            for(int column = 0; column < 6; column++)
+            {
+                for(int line = 0; line < 6; line++)
+                {
+                    if(Cells[column, line] == '-' &&  piece.FormObject[column, line] != '-')
+                    {
+                        Cells[column + piece.X, line + piece.Y] = piece.FormObject[column, line];
+                    }
+                }
+            }
+        }
+
         public void ClearLastGridLine(int yPiecePosition)
         {
         }

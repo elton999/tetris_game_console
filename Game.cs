@@ -9,7 +9,7 @@ namespace tetris
     public class Game
     {
         public Grid Grid;
-        public Piece CurrentPiece;
+        public PieceManager PieceManager;
         public PieceMovement PieceMovement;
 
         public void Start()
@@ -20,25 +20,22 @@ namespace tetris
             PieceMovement = new PieceMovement();
             PieceMovement.Grid = Grid;
 
-            CurrentPiece = new Pieces.Box();
-            CurrentPiece.Start();
-            CurrentPiece.PieceMovement = PieceMovement;
-
+            PieceManager = new PieceManager(Grid);
+            PieceManager.SetNewPiece();
         }
 
         public void Update()
         {
-            CurrentPiece.PieceMovement = PieceMovement;
-
             InputHandler.Instance.Update();
-
-            CurrentPiece.Update();
+            
+            PieceManager.CurrentPiece.PieceMovement = PieceMovement;
+            PieceManager.Update();
         }
 
         public void Print()
         {
             Grid.Print();
-            CurrentPiece.Print();
+            PieceManager.Print();
         }
     }
 }
