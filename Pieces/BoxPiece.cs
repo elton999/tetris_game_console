@@ -2,11 +2,10 @@ using System;
 
 namespace tetris.Pieces
 {
-    public class Box : Piece
+    public class BoxPiece : Piece
     {
-        public override void Start()
+        public BoxPiece()
         {
-            base.Start();
             FormObject = new char[6,6] {
                 {'#', '#', '-', '-', '-', '-'},
                 {'#', '#', '-', '-', '-', '-'},

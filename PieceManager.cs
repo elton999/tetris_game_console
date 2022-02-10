@@ -11,6 +11,7 @@ namespace tetris
         public PieceManager(Grid grid)
         {
             Grid = grid;
+            CurrentPiece = PieceRaffle.GetNewPiece();
         }
 
         public void Update()
@@ -22,7 +23,7 @@ namespace tetris
             if(Collision.IsColliding(CurrentPiece, Grid, CurrentPiece.X, CurrentPiece.Y + 1))
             {
                 Grid.SetPieceOnGrid(CurrentPiece);
-                SetNewPiece();
+                CurrentPiece = PieceRaffle.GetNewPiece();
             }
         }
 
@@ -30,12 +31,6 @@ namespace tetris
         {
             if(CurrentPiece.PieceMovement != null)
                 CurrentPiece.Print();
-        }
-
-        public void SetNewPiece()
-        {
-            CurrentPiece = new Pieces.Box();
-            CurrentPiece.Start();
         }
     }
 }

@@ -3,7 +3,7 @@ using tetris.interfaces;
 
 namespace tetris
 {
-    public abstract class Piece : Cell, IObjectForm, IPrint, ILocations, IStartObject, IUpdateObject
+    public abstract class Piece : Cell, IObjectForm, IPrint, ILocations, IUpdateObject
     {
         private int _x = 0;
         private int _y = 0;
@@ -13,8 +13,6 @@ namespace tetris
         public int Y {get => _y; set => _y = value;}
 
         public PieceMovement PieceMovement;
-
-        public virtual void Start() {}
 
         public void Update()
         {

@@ -19,11 +19,8 @@ namespace tetris
             Grid.Print();
             GridEfx = new GridEfx(Grid);
 
-            PieceMovement = new PieceMovement();
-            PieceMovement.Grid = Grid;
-
+            PieceMovement = new PieceMovement(Grid);
             PieceManager = new PieceManager(Grid);
-            PieceManager.SetNewPiece();
         }
 
         public void Update()

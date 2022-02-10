@@ -50,6 +50,7 @@ namespace tetris
 
         public void ClearCompletedLines()
         {
+            //TODO: Create a new class for lines processes
             foreach (int lineComplete in LinesComplete)
             {
                 ClearLine(lineComplete);

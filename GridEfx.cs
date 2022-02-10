@@ -22,6 +22,7 @@ namespace tetris
         {
             if(_Blinks > 0) return;
             Grid.ClearCompletedLines();
+            _Blinks = 8;
         }
 
         public void Print()
