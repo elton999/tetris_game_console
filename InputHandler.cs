@@ -18,11 +18,13 @@ namespace tetris
 
         public bool MoveLeft = false;
         public bool MoveRight = false;
+        public bool Rotate = false;
 
         public void Update()
         {
             MoveRight = Input.Key == ConsoleKey.RightArrow;
             MoveLeft = Input.Key == ConsoleKey.LeftArrow;
+            Rotate = Input.Key == ConsoleKey.UpArrow;
         }
     }
 }

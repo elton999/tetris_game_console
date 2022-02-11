@@ -25,6 +25,8 @@ namespace tetris
                 xIncrement = 1;
             if (InputHandler.Instance.MoveLeft)
                 xIncrement = -1;
+            if(InputHandler.Instance.Rotate)
+                FormObject = Transformation.Rotation(FormObject, 6, 6);
 
             PieceMovement.Move(X + xIncrement, Y + yIncrement);
         }

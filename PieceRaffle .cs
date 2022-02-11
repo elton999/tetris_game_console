@@ -8,7 +8,7 @@ namespace tetris
         public static Piece GetNewPiece()
         {
             Random random = new Random();
-            int pieceNumber = random.Next(0, 6);
+            int pieceNumber = random.Next(0, 7);
 
             return GetPieceFromNumber(pieceNumber);
         }
@@ -17,27 +17,20 @@ namespace tetris
         {
             switch (pieceNumber)
             {
-                case 0:
+                /*case 0:
                     return new BoxPiece();
-                    break;
                 case 1:
                     return new FivePiece();
-                    break;
                 case 2:
                     return new InverseLPiece();
-                    break;
                 case 3:
                     return new LinePiece();
-                    break;
                 case 4:
                     return new LPiece();
-                    break;
                 case 5:
-                    return new SPiece();
-                    break;
+                    return new SPiece();*/
                 default:
                     return new TPiece();
-                    break;
             }
         }
     }
