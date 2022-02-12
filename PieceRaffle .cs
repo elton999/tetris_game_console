@@ -17,7 +17,7 @@ namespace tetris
         {
             switch (pieceNumber)
             {
-                /*case 0:
+                case 0:
                     return new BoxPiece();
                 case 1:
                     return new FivePiece();
@@ -28,7 +28,7 @@ namespace tetris
                 case 4:
                     return new LPiece();
                 case 5:
-                    return new SPiece();*/
+                    return new SPiece();
                 default:
                     return new TPiece();
             }

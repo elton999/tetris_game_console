@@ -9,13 +9,13 @@ namespace tetris
     {
         private int _Blinks = 8;
         public Grid Grid;
-        public Queue<char> EffectBlink = new Queue<char>();
+        public Queue<char> SequenceCharBlink = new Queue<char>();
         
         public GridEfx(Grid grid)
         {
             Grid = grid;
-            EffectBlink.Enqueue('X');
-            EffectBlink.Enqueue('+');
+            SequenceCharBlink.Enqueue('X');
+            SequenceCharBlink.Enqueue('+');
         }
 
         public void Update()
@@ -32,7 +32,7 @@ namespace tetris
 
             _Blinks--;
 
-            char effectBlink = EffectBlink.Dequeue();
+            char effectBlink = SequenceCharBlink.Dequeue();
             
             foreach(int line in Grid.LinesComplete)
             {
@@ -42,7 +42,7 @@ namespace tetris
                 }
             }
 
-            EffectBlink.Enqueue(effectBlink);
+            SequenceCharBlink.Enqueue(effectBlink);
         }
     }
 }

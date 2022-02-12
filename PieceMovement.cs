@@ -19,7 +19,7 @@ namespace tetris
             if(!Collision.IsColliding(Form, Grid, x, y))
             {
                 Location.X = x;
-                //Location.Y = y;
+                Location.Y = y;
             }
         }
     }
