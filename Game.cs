@@ -12,6 +12,7 @@ namespace tetris
         public PieceManager PieceManager;
         public PieceMovement PieceMovement;
         public GridEfx GridEfx;
+        public UI UI;
 
         public void Start()
         {
@@ -21,6 +22,8 @@ namespace tetris
 
             PieceMovement = new PieceMovement(Grid);
             PieceManager = new PieceManager(Grid);
+
+            UI = new UI();
         }
 
         public void Update()
@@ -39,6 +42,7 @@ namespace tetris
             Grid.Print();
             GridEfx.Print();
             PieceManager.Print();
+            UI.Print();
         }
     }
 }

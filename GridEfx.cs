@@ -1,11 +1,9 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using tetris.interfaces;
 
 namespace tetris
 {
-    public class GridEfx
+    public class GridEfx : IUpdateObject, IPrint
     {
         private int _Blinks = 8;
         public Grid Grid;
