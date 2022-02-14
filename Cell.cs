@@ -11,7 +11,7 @@ namespace tetris
             {
                 if(grid.Cells[xLocation, yLocation] == '-')
                 {
-                    Console.SetCursorPosition(xLocation, yLocation);
+                    Console.SetCursorPosition(xLocation + grid.X, yLocation + grid.X);
                     Console.Write(characther);
                 }
             }

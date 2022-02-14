@@ -18,8 +18,8 @@ namespace tetris
             Console.Write("0001");
             PrintHorizontalLine(12, 20, 6);
 
-            PrintHorizontalLine(1, 10, 20);
-            PrintHorizontalLine(12, 20, 20);
+            PrintHorizontalLine(1, 10, 21);
+            PrintHorizontalLine(12, 20, 21);
 
             PrintVerticalLine(1, 20, 0);
             PrintVerticalLine(1, 20, 11);

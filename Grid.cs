@@ -4,23 +4,25 @@ using tetris.interfaces;
 
 namespace tetris
 {
-    public class Grid : IPrint
+    public class Grid : IPrint, ISize, ILocations
     {
         private int _sizeX = 0;
         private int _sizeY = 0;
 
         public int SizeX {get => _sizeX; set => _sizeX = value;}
         public int SizeY {get => _sizeY; set => _sizeY = value;}
-        public int X = 0;
-        public int Y = 0;
+        public int X {get; set;}
+        public int Y {get; set;}
 
         public char[,] Cells;
         public List<int> LinesComplete = new List<int>();
 
         public Grid(int x, int y)
         {
-            this.SizeX = x;
-            this.SizeY = y;
+            SizeX = x;
+            SizeY = y;
+            X = 1;
+            Y = 1;
 
             Cells = new char[SizeX, SizeY];
             for(int column = 0; column < SizeX; column++)
