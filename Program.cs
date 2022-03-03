@@ -8,7 +8,7 @@ namespace tetris
         static Game Game = new Game();
         public static void Main()
         {
-            var inputThread = new Thread(Input.CheckKey);
+            var inputThread = new Thread(InputSettings.CheckKey);
             inputThread.Start();
             
             Game.Start();
@@ -19,7 +19,7 @@ namespace tetris
                 Game.Update();
                 Game.Print();
 
-                Input.Reset();
+                InputSettings.Reset();
                 
                 Thread.Sleep(200);
             }

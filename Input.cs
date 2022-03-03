@@ -3,21 +3,28 @@ using tetris.interfaces;
 
 namespace tetris
 {
-    public class Input
+    public sealed class Input : IUpdateObject
     {
-        public static ConsoleKey Key = ConsoleKey.NumPad0;
-
-        public static void Reset()
+        private static Input _instance;
+        public static Input Instance 
         {
-            Key = ConsoleKey.NumPad0;
+            get 
+            {
+                if(_instance == null)
+                    _instance = new Input();
+                return _instance;
+            }
         }
 
-        public static void CheckKey()
+        public bool MoveLeft = false;
+        public bool MoveRight = false;
+        public bool Rotate = false;
+
+        public void Update()
         {
-            while(true)
-            {
-                Key = Console.ReadKey(true).Key;
-            }
+            MoveRight = InputSettings.Key == ConsoleKey.RightArrow;
+            MoveLeft = InputSettings.Key == ConsoleKey.LeftArrow;
+            Rotate = InputSettings.Key == ConsoleKey.UpArrow;
         }
     }
 }

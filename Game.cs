@@ -30,7 +30,7 @@ namespace tetris
         {
             Grid.Lines.CheckLinesComplete();
 
-            InputHandler.Instance.Update();
+            Input.Instance.Update();
             
             PieceManager.CurrentPiece.PieceMovement = PieceMovement;
             PieceManager.Update();

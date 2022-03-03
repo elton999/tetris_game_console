@@ -21,11 +21,11 @@ namespace tetris
             int yIncrement = 1;
             int xIncrement = 0;
 
-            if (InputHandler.Instance.MoveRight)
+            if (Input.Instance.MoveRight)
                 xIncrement = 1;
-            if (InputHandler.Instance.MoveLeft)
+            if (Input.Instance.MoveLeft)
                 xIncrement = -1;
-            if(InputHandler.Instance.Rotate)
+            if(Input.Instance.Rotate)
                 FormObject = Transformation.Rotation(FormObject, 6, 6);
 
             PieceMovement.Move(X + xIncrement, Y + yIncrement);
