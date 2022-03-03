@@ -9,9 +9,9 @@ namespace tetris
     public class Game
     {
         public Grid Grid;
+        public GridEfx GridEfx;
         public PieceManager PieceManager;
         public PieceMovement PieceMovement;
-        public GridEfx GridEfx;
         public UI UI;
 
         public void Start()
@@ -28,7 +28,7 @@ namespace tetris
 
         public void Update()
         {
-            Grid.CheckLinesComplete();
+            Grid.Lines.CheckLinesComplete();
 
             InputHandler.Instance.Update();
             

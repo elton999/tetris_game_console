@@ -19,20 +19,20 @@ namespace tetris
         public void Update()
         {
             if(_Blinks > 0) return;
-            Grid.ClearCompletedLines();
+            Grid.Lines.ClearCompletedLines();
             _Blinks = 8;
         }
 
         public void Print()
         {
-            if(Grid.LinesComplete.Count == 0) return;
+            if(Grid.Lines.LinesComplete.Count == 0) return;
             if(_Blinks <= 0) return;
 
             _Blinks--;
 
             char effectBlink = SequenceCharBlink.Dequeue();
             
-            foreach(int line in Grid.LinesComplete)
+            foreach(int line in Grid.Lines.LinesComplete)
             {
                 for(int column = 0; column < Grid.SizeX; column++)
                 {

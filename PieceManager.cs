@@ -16,7 +16,7 @@ namespace tetris
 
         public void Update()
         {
-            if(Grid.LinesComplete.Count > 0) return;
+            if(Grid.Lines.LinesComplete.Count > 0) return;
 
             CurrentPiece.Update();
 

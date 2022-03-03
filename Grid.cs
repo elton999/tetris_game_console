@@ -15,7 +15,8 @@ namespace tetris
         public int Y {get; set;}
 
         public char[,] Cells;
-        public List<int> LinesComplete = new List<int>();
+
+        public Lines Lines;
 
         public Grid(int x, int y)
         {
@@ -32,41 +33,7 @@ namespace tetris
                     Cells[column,line] = '-';
                 }
             }
-        }
-
-        public void CheckLinesComplete()
-        {
-            List<int> lines = new List<int>();
-
-            for(int line = 0; line < SizeY; line++)
-            {
-                int numberOfCells = 0;
-                for(int column = 0; column < SizeX; column++)
-                {
-                    if(!Collision.IsCellFree(Cells, column, line)) numberOfCells++;
-                }
-                if(numberOfCells == SizeX) lines.Add(line);
-            }
-            LinesComplete = lines;
-        }
-
-        public void ClearCompletedLines()
-        {
-            //TODO: Create a new class for lines processes
-            foreach (int lineComplete in LinesComplete)
-            {
-                ClearLine(lineComplete);
-                PushCellsFromLine(lineComplete);
-            }
-            LinesComplete = new List<int>();
-        }
-
-        public void ClearLine(int line)
-        {
-            for(int column = 0; column < SizeX; column++)
-            {
-                Cells[column, line] = '-';
-            }
+            Lines = new Lines(this);
         }
 
         public void PushCellsFromLine(int fromLine)
@@ -87,9 +54,11 @@ namespace tetris
             {
                 for(int column = 0; column < 6; column++)
                 {
-                    if(Cells[Math.Clamp(column + piece.X, 0, SizeX - 1), Math.Clamp(line + piece.Y, 0, SizeY - 1)] == '-' &&  piece.FormObject[line, column] != '-')
+                    int x = Math.Clamp(column + piece.X, 0, SizeX - 1);
+                    int y = Math.Clamp(line + piece.Y, 0, SizeY - 1);
+                    if (Cells[x, y] == '-' &&  piece.FormObject[line, column] != '-')
                     {
-                        Cells[Math.Clamp(column + piece.X, 0, SizeX - 1), Math.Clamp(line + piece.Y, 0, SizeY - 1)] = piece.FormObject[line, column];
+                        Cells[x, y] = piece.FormObject[line, column];
                     }
                 }
             }
