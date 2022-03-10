@@ -1,10 +1,9 @@
-using System.Collections.Generic;
 using System;
 using tetris.interfaces;
 
 namespace tetris
 {
-    public class Grid : IPrint, ISize, ILocations
+    public class Grid : IPrint, ISize, ILocations, IClearCells
     {
         private int _sizeX = 0;
         private int _sizeY = 0;
@@ -72,6 +71,17 @@ namespace tetris
                 {
                     Console.SetCursorPosition(column + X, line + Y);
                     Console.Write(Cells[column, line]);
+                }
+            }
+        }
+
+        public void Clear()
+        {
+            for (int line = 0; line < SizeY; line++)
+            {
+                for(int column = 0; column < SizeX; column++)
+                {
+                    Cells[column, line] = '-';
                 }
             }
         }

@@ -36,4 +36,9 @@ namespace tetris.interfaces
     {
         void Update();
     }
+
+    public interface IClearCells
+    {
+        void Clear();
+    }
 }

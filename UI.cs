@@ -5,8 +5,20 @@ namespace tetris
 {
     public class UI : IPrint
     {
+        private bool _isGameOver = false;
+        public bool IsGameOver { get => _isGameOver; }
+        public int Score = 0;
+        public Grid Grid;
+
+        public UI(Grid grid)
+        {
+            Grid = grid;
+        }
+
         public void Print()
         {
+            PrintGameOver();
+
             PrintHorizontalLine(1, 10, 0);
             PrintHorizontalLine(12, 20, 0);
 
@@ -15,7 +27,7 @@ namespace tetris
             PrintHorizontalLine(12, 20, 3);
 
             Console.SetCursorPosition(13, 5);
-            Console.Write("0001");
+            Console.Write(Score);
             PrintHorizontalLine(12, 20, 6);
 
             PrintHorizontalLine(1, 10, 21);
@@ -32,6 +44,28 @@ namespace tetris
             {
                 Console.SetCursorPosition(i, verticalPosition);
                 Console.Write('_');
+            }
+        }
+
+        public void GameOver()
+        {
+            _isGameOver = true;
+            Grid.Clear();
+        }
+
+        public void StartGame()
+        {
+            Grid.Clear();
+            _isGameOver = false;
+            Score = 0;
+        }
+
+        public void PrintGameOver()
+        {
+            if(IsGameOver)
+            {
+                Console.SetCursorPosition(2, 10);
+                Console.Write("GameOver");
             }
         }
 

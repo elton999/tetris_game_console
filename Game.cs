@@ -1,9 +1,3 @@
-using System.Threading;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
 namespace tetris
 {
     public class Game
@@ -20,10 +14,10 @@ namespace tetris
             Grid.Print();
             GridEfx = new GridEfx(Grid);
 
+            UI = new UI(Grid);
+            
             PieceMovement = new PieceMovement(Grid);
-            PieceManager = new PieceManager(Grid);
-
-            UI = new UI();
+            PieceManager = new PieceManager(Grid, UI);
         }
 
         public void Update()
