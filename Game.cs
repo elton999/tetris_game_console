@@ -22,7 +22,7 @@ namespace tetris
 
         public void Update()
         {
-            Grid.Lines.CheckLinesComplete();
+            Grid.Lines.CheckLinesComplete(UI);
 
             Input.Instance.Update();
             

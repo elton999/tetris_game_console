@@ -12,7 +12,7 @@ namespace tetris
             _Grid = grid;
         }
 
-        public void CheckLinesComplete()
+        public void CheckLinesComplete(UI UI)
         {
             List<int> lines = new List<int>();
 
@@ -21,11 +21,12 @@ namespace tetris
                 int numberOfCells = 0;
                 for (int column = 0; column < _Grid.SizeX; column++)
                 {
-                    if (!Collision.IsCellFree(_Grid.Cells, column, line)) numberOfCells++;
+                    if (!Collision.IsCellFree(_Grid.Cells, column, line))numberOfCells++;
                 }
                 if (numberOfCells == _Grid.SizeX) lines.Add(line);
             }
             LinesComplete = lines;
+            UI.Score += lines.Count;
         }
 
         public void ClearCompletedLines()
